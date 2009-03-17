@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="false">
+<meta http-equiv="imagetoolbar" content="no">
+<script type="text/javascript" src="uploader.js"></script>
+<script type="text/javascript">
+window.addEventListener("load", function() {
+
+    // handle image preview
+    var input      = document.getElementById("photo");
+    var img        = document.getElementById("img");
+    var previewBtn = document.getElementById("preview");
+    previewBtn.addEventListener("click", function() {
+        img.src = input.files[0].getAsDataURL();
+    }, false);
+
+    // handle file upload
+    var form      = document.getElementsByTagName("form")[0];
+    var uploader  = new Uploader(form);
+    var uploadBtn = document.getElementById("upload");
+    uploadBtn.addEventListener("click", function() {
+        uploader.send();
+    }, false);
+
+}, false);
+</script>
+</head>
+<body>
+
+<form action="upload.php" method="post"
+      enctype="multipart/form-data" onsubmit="return false;">
+    <fieldset>
+        <legend>Upload photo</legend>
+        <label for="image_name">Image name:</label>
+        <input type="text" name="image_name" id="image_name"> |
+        <label for="image_type">Image type:</label>
+        <select name="image_type" id="image_type">
+            <option>JPEG</option>
+            <option>PNG</option>
+            <option>GIF</option>
+        </select> |
+        <input type="file" name="photo" id="photo">
+        <input type="submit" value="Upload" id="upload">
+        <input type="submit" value="Preview" id="preview">
+		<hr>
+        <img src="" alt="image preview" id="img">
+    </fieldset>
+</form>
+
+</body>
+</html>

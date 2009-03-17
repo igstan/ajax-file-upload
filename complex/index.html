@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="false">
+<meta http-equiv="imagetoolbar" content="no">
+<style type="text/css">
+body {
+ font-size: 80%;
+ font-family: arial, verdana, sans-serif;
+}
+ul {
+ margin: 0;
+ padding: 0;
+ list-style: none outside;
+}
+fieldset {
+  width: 625px;
+  margin: 30px auto;
+  padding: 5px;
+  border: double #999999 3px;
+}
+dl {
+ overflow: hidden;
+ padding: 0 0 5px 0;
+}
+dt {
+ float: left;
+ display: inline;
+ width: 100px;
+ padding: 0 5px 5px 0;
+ text-align: right;
+}
+dd {
+ float: left;
+ display: inline;
+ width: 520px;
+ margin: 0;
+ padding: 0 0 5px 0;
+}
+select[multiple] {
+ width: 267px;
+}
+input[type=radio] {
+ vertical-align: -10%;
+}
+input[type=file], img {
+ float: left;
+}
+</style>
+<script type="text/javascript" src="uploader.js"></script>
+<script type="text/javascript">
+window.addEventListener("load", function() {
+
+    // handle image preview
+    var input      = document.getElementById("photo");
+    var img        = document.getElementById("img");
+    var previewBtn = document.getElementById("preview");
+    previewBtn.addEventListener("click", function() {
+        img.src = input.files[0].getAsDataURL();
+    }, false);
+
+    // handle file upload
+    var form      = document.getElementsByTagName("form")[0];
+    var uploader  = new Uploader(form);
+    var uploadBtn = document.getElementById("upload");
+    uploadBtn.addEventListener("click", function() {
+        uploader.send();
+    }, false);
+
+}, false);
+</script>
+</head>
+<body>
+
+<form action="upload.php" enctype="multipart/form-data" method="post" onsubmit="return false;" id="form">
+    <fieldset>
+        <legend>Upload photo</legend>
+        <dl>
+            <dt>Tags:</dt>
+            <dd>
+                <ul>
+                    <li>
+                        <label for="family">
+                            <input type="checkbox"
+                                   name="tags[]"
+                                   id="family"
+                                   value="Family">
+                            Family
+                        </label>
+                    </li>
+                    <li>
+                        <label for="vacation">
+                            <input type="checkbox"
+                                   name="tags[]"
+                                   id="vacation"
+                                   value="Vacation">
+                            Vacation
+                        </label>
+                    </li>
+                    <li>
+                        <label for="work">
+                            <input type="checkbox"
+                                   name="tags[]"
+                                   id="work"
+                                   value="Work">
+                            Work
+                        </label>
+                    </li>
+                </ul>
+            </dd>
+            <dt><label for="image_type">Image type:</label></dt>
+            <dd>
+                <select name="image_type" id="image_type">
+                    <option>PNG</option>
+                    <option>JPEG</option>
+                    <option>GIF</option>
+                </select>
+            </dd>
+            <dt><label for="image_name">Image name:</label></dt>
+            <dd>
+                <input type="text" name="image_name" id="image_name" size="40">
+            </dd>
+            <dt><label for="file">Image:</label></dt>
+            <dd>
+                <input type="file" name="photo" id="photo" size="40">
+            </dd>
+            <dt>Status:</dt>
+            <dd>
+                <label for="status_on">
+                    <input type="radio" name="status" id="status_on" value="active">
+                    Active
+                </label>
+                <label for="status_off">
+                    <input type="radio" name="status" id="status_off" value="inactive">
+                    Inactive
+                </label>
+            </dd>
+            <dt><label for="other_tags">Other tags:</label></dt>
+            <dd>
+                <select name="other_tags[]" id="other_tags" multiple="multiple">
+                    <option>Family</option>
+                    <option>Vacation</option>
+                    <option>Work</option>
+                </select>
+            </dd>
+        </dl>
+        <div style="clear:both; text-align:right;">
+            <hr>
+            <span id="server_response"></span>
+            <button id="upload" name="button_field" value="button_value">Upload</button>
+            <button id="preview">Preview</button>
+            <hr>
+            <img src="" alt="image preview" id="img">
+        </div>
+    </fieldset>
+</form>
+
+</body>
+</html>

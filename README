@@ -1,0 +1,20 @@
+WHAT'S THIS
+-------------------------------------------------------------------------------
+The code available in the /complex and /simple directories is POC that real
+Ajax file upload is possible... but only in FF3 for the moment. The code had
+initially accompanied a tutorial that is published at the moment at
+http://igstan.blogspot.com/2009/01/pure-javascript-file-upload.html.
+
+SOME DETAILS
+-------------------------------------------------------------------------------
+The code in /simple concentrates on getting ONLY file data to the server, while
+the code in /complex tries to serialize a full blown form with every type of
+component that I could imagine and then send it to the server.
+
+LICENSE
+-------------------------------------------------------------------------------
+What you'll find in the source files is licensed under the new BSD license, so
+feel free to use it for whatever you wish. I know of somebody that used it to
+built a Mozilla Ubiquity command.
+
+Enjoy it!
